@@ -27,8 +27,14 @@ public class ZonaFitTestStepDefinitions extends WebUI {
 
     @When("el cliente selecciona los productos que desea comprar")
     public void elClienteSeleccionaLosProductosQueDeseaComprar ()  {
-        zonaFitPage = new ZonaFitPage(cliente, super.driver);
-        zonaFitPage.fillMandatoryFields();
+        try {
+            zonaFitPage = new ZonaFitPage(cliente, super.driver);
+            zonaFitPage.fillMandatoryFields();
+        }catch (Exception exception){
+
+        }finally {
+            //quiteDriver();
+        }
 
     }
 

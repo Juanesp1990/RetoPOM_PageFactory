@@ -2,6 +2,7 @@ package co.com.sofka.page;
 
 import co.com.sofka.model.ZonaFitModel;
 import co.com.sofka.page.common.CommonActionOnpages;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -13,8 +14,9 @@ import static io.cucumber.messages.internal.com.google.common.base.StandardSyste
 public class ZonaFitPage extends CommonActionOnpages {
 
     private final ZonaFitModel zonaFitModel;
+    private static final Logger LOGGER = Logger.getLogger(ZonaFitPage.class);
 
-    // locators
+    /*locators*/
 
     @CacheLookup
     @FindBy(xpath = "//a[@class='dashicons-tag mega-menu-link']")
@@ -23,11 +25,6 @@ public class ZonaFitPage extends CommonActionOnpages {
     @CacheLookup
     @FindBy(css = "input[data-brand='800']")
     private WebElement marca;
-
-    private static final String PAGE_BASE_PATCH = USER_DIR.value() + "\\src\\main\\resources\\page.zonafit\\";
-    private static final String SELECT_PICTURE_ADD_CAR = PAGE_BASE_PATCH + "addCar.PNG";
-    private static final String SELECT_PICTURE_SEE_CAR = PAGE_BASE_PATCH + "seeCar.PNG";
-    private static final String SELECT_END_BUY = PAGE_BASE_PATCH + "endBuy.PNG";
 
     @CacheLookup
     @FindBy(css = "div[class='wc-proceed-to-checkout']")
@@ -75,7 +72,7 @@ public class ZonaFitPage extends CommonActionOnpages {
     private WebElement cellphone;
 
     @CacheLookup
-    @FindBy(id="order_comments")
+    @FindBy(id = "order_comments")
     private WebElement note;
 
     @CacheLookup
@@ -83,17 +80,20 @@ public class ZonaFitPage extends CommonActionOnpages {
     private WebElement paymentMethodBaloto;
 
     @CacheLookup
-    @FindBy(id = "payment_method_woo-mercado-pago-basic")
-    private WebElement paymentMethodPSE;
-
-    @CacheLookup
     @FindBy(id = "terms")
     private WebElement terms;
 
     @CacheLookup
-    @FindBy(id="place_order")
+    @FindBy(id = "place_order")
     private WebElement buttonOrden;
 
+    /*rute*/
+
+    private static final String PAGE_BASE_PATCH = USER_DIR.value() + "\\src\\main\\resources\\page.zonafit\\";
+    private static final String SELECT_PICTURE_ADD_CAR = PAGE_BASE_PATCH + "addCar.PNG";
+    private static final String SELECT_PICTURE_SEE_CAR = PAGE_BASE_PATCH + "seeCar.PNG";
+    private static final String TERMS_CONDITIONS = PAGE_BASE_PATCH + "read.PNG";
+    private static final String SELECT_END_BUY = PAGE_BASE_PATCH + "endBuy.PNG";
 
     //constructor
     public ZonaFitPage (ZonaFitModel zonaFitModel, WebDriver webDriver) {
@@ -106,50 +106,66 @@ public class ZonaFitPage extends CommonActionOnpages {
 
     //functions
     public void fillMandatoryFields () {
+        try {
+            click(ofertas);
+            click(ofertas);
 
-        //selector offer
-        click(ofertas);
-        click(ofertas);
+            click(marca);
 
-        click(marca);
+            scrollDown();
+            click(SELECT_PICTURE_ADD_CAR);
+            scrollDown();
+            click(SELECT_PICTURE_ADD_CAR);
+            click(SELECT_PICTURE_SEE_CAR);
 
-        scrollDown();
-        click(SELECT_PICTURE_ADD_CAR);
-        scrollDown();
-        click(SELECT_PICTURE_ADD_CAR);
-        click(SELECT_PICTURE_SEE_CAR);
+            click(buttonEndBuy);
 
-        click(buttonEndBuy);
+            clearText(numberDocument);
+            typeInto(numberDocument, zonaFitModel.getDocumentNumber());
+            clearText(email);
+            typeInto(email, zonaFitModel.getEmail());
+            clearText(name);
+            typeInto(name, zonaFitModel.getName());
+            clearText(lastName);
+            typeInto(lastName, zonaFitModel.getLastName());
 
-        typeInto(numberDocument,zonaFitModel.getDocumentNumber());
-        typeInto(email,zonaFitModel.getEmail());
-        typeInto(name,zonaFitModel.getName());
-        typeInto(lastName,zonaFitModel.getLastName());
+            scrollDown();
+            click(state);
+            clearText(stateField);
+            typeInto(stateField, zonaFitModel.getState().getValue());
+            pressEnter(stateField);
 
-        scrollDown();
-        click(state);
-        typeInto(stateField,zonaFitModel.getState().getValue());
-        pressEnter(stateField);
+            click(city);
+            clearText(cityField);
+            typeInto(cityField, zonaFitModel.getCity().getValue());
+            pressEnter(cityField);
 
-        click(city);
-        typeInto(cityField,zonaFitModel.getCity().getValue());
-        pressEnter(cityField);
+            clearText(address);
+            typeInto(address, zonaFitModel.getAddress());
+            clearText(complementaryAddress);
+            typeInto(complementaryAddress, zonaFitModel.getComplementaryAddress());
+            clearText(cellphone);
+            typeInto(cellphone, zonaFitModel.getCellPhone());
+            clearText(note);
+            typeInto(note, zonaFitModel.getNote());
 
-        typeInto(address,zonaFitModel.getAddress());
-        typeInto(complementaryAddress,zonaFitModel.getComplementaryAddress());
-        typeInto(cellphone, zonaFitModel.getCellPhone());
-        typeInto(note, zonaFitModel.getNote());
+            scrollTo(paymentMethodBaloto);
 
-        scrollTo(paymentMethodBaloto);
+            waitGeneral(terms);
+            waitClick(terms);
+            //click(TERMS_CONDITIONS);
 
-        ewaitClick((terms));
+            waitClick(paymentMethodBaloto);
 
-        ewaitClick(paymentMethodBaloto);
+            scrollUp();
+            waitGeneral(paymentMethodBaloto);
+            //click(SELECT_END_BUY);
 
-        scrollUp();
-        ewaitGeneral(terms);
-        click(SELECT_END_BUY);
+            LOGGER.info("MELO CARAMELO");
 
+        } catch (Exception exception) {
+            LOGGER.warn(exception.getMessage());
+        }
 
     }
 

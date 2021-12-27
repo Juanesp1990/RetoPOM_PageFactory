@@ -8,12 +8,7 @@
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_111/jre/lib/rt.jar!/java/lang/Object.class">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$USER_HOME$/Desktop/Reto3/Reto-RestAssured/src/test/resources/features/GetAndPost.feature">
+        <entry key="$PROJECT_DIR$/../../Reto3/Reto-RestAssured/src/test/resources/features/GetAndPost.feature">
           <value>
             <set />
           </value>
@@ -58,6 +53,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/co/com/sofka/util/LimitTimeWait.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/co/com/sofka/util/Log4jValues.java">
           <value>
             <set />
@@ -94,6 +94,56 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/test/resources/log4j.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/automationtesting-trunk/automationtesting-trunk/retoDespegarPOM/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/automationtesting-trunk/automationtesting-trunk/retoDespegarPOM/src/main/java/co/com/sofka/model/DespegarModel.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/automationtesting-trunk/automationtesting-trunk/retoDespegarPOM/src/main/java/co/com/sofka/page/Common.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/automationtesting-trunk/automationtesting-trunk/retoDespegarPOM/src/main/java/co/com/sofka/page/DespegarPage.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/automationtesting-trunk/automationtesting-trunk/retoDespegarPOM/src/test/java/co/com/sofka/runner/DespegarCucumber.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/automationtesting-trunk/automationtesting-trunk/retoDespegarPOM/src/test/java/co/com/sofka/setup/WebUI.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/automationtesting-trunk/automationtesting-trunk/retoDespegarPOM/src/test/java/co/com/sofka/stepdefinitions/DespegarStepDefinition.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/automationtesting-trunk/automationtesting-trunk/retoDespegarPOM/src/test/resources/features/despegar.feature">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/automationtesting-trunk/automationtesting-trunk/toolsqapomwithpagefactory/src/main/java/co/com/sofka/page/common/CommonActionsOnPages.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_111/jre/lib/rt.jar!/java/lang/Object.class">
           <value>
             <set />
           </value>
