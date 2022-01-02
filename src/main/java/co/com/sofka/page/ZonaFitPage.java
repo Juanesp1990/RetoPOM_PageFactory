@@ -23,8 +23,24 @@ public class ZonaFitPage extends CommonActionOnpages {
     private WebElement ofertas;
 
     @CacheLookup
+    @FindBy(xpath = "//a[@class='dashicons-plus-alt2 mega-menu-link']")
+    private WebElement masProductos;
+
+    @CacheLookup
+    @FindBy(xpath = "//a[@class='dashicons-plus-alt2 mega-menu-link']")
+    private WebElement ordenarPor;
+
+    @CacheLookup
+    @FindBy(xpath = "//option[@value='price']")
+    private WebElement precioMenorMayor;
+
+    @CacheLookup
     @FindBy(css = "input[data-brand='800']")
-    private WebElement marca;
+    private WebElement marcaZonaFit;
+
+    @CacheLookup
+    @FindBy(css = "input[data-brand='136']")
+    private WebElement marcaUniversal;
 
     @CacheLookup
     @FindBy(css = "div[class='wc-proceed-to-checkout']")
@@ -87,12 +103,19 @@ public class ZonaFitPage extends CommonActionOnpages {
     @FindBy(id = "place_order")
     private WebElement buttonOrden;
 
+    @CacheLookup
+    @FindBy(xpath = "//*[@id=\"main\"]/div[2]/div/div/div[2]/div/p/strong")
+    private WebElement mensajePedidoRecibido;
+
+    @CacheLookup
+    @FindBy(xpath = "//img[@data-src='https://zonafit.co/qr.jpg']")
+    private WebElement codigoQr;
+
     /*rute*/
 
     private static final String PAGE_BASE_PATCH = USER_DIR.value() + "\\src\\main\\resources\\page.zonafit\\";
     private static final String SELECT_PICTURE_ADD_CAR = PAGE_BASE_PATCH + "addCar.PNG";
     private static final String SELECT_PICTURE_SEE_CAR = PAGE_BASE_PATCH + "seeCar.PNG";
-    private static final String TERMS_CONDITIONS = PAGE_BASE_PATCH + "read.PNG";
     private static final String SELECT_END_BUY = PAGE_BASE_PATCH + "endBuy.PNG";
 
     //constructor
@@ -103,23 +126,31 @@ public class ZonaFitPage extends CommonActionOnpages {
 
     }
 
-
     //functions
+    public void selectOffers () {
+        click(ofertas);
+        click(ofertas);
+        click(marcaZonaFit);
+        selectTwoProduct();
+    }
+
+    public void selectProduct () {
+        click(masProductos);
+        click(masProductos);
+        click(ordenarPor);
+        click(precioMenorMayor);
+        scrollDown();
+        scrollDown();
+        click(marcaUniversal);
+        selectTwoProduct();
+    }
+
     public void fillMandatoryFields () {
         try {
-            click(ofertas);
-            click(ofertas);
-
-            click(marca);
-
-            scrollDown();
-            click(SELECT_PICTURE_ADD_CAR);
-            scrollDown();
-            click(SELECT_PICTURE_ADD_CAR);
-            click(SELECT_PICTURE_SEE_CAR);
-
             click(buttonEndBuy);
-
+            scrollDown();
+            scrollUp();
+            waitGeneral(numberDocument);
             clearText(numberDocument);
             typeInto(numberDocument, zonaFitModel.getDocumentNumber());
             clearText(email);
@@ -149,24 +180,72 @@ public class ZonaFitPage extends CommonActionOnpages {
             clearText(note);
             typeInto(note, zonaFitModel.getNote());
 
-            scrollTo(paymentMethodBaloto);
-
-            waitGeneral(terms);
-            waitClick(terms);
-            //click(TERMS_CONDITIONS);
-
-            waitClick(paymentMethodBaloto);
-
-            scrollUp();
-            waitGeneral(paymentMethodBaloto);
-            //click(SELECT_END_BUY);
-
-            LOGGER.info("MELO CARAMELO");
 
         } catch (Exception exception) {
             LOGGER.warn(exception.getMessage());
         }
 
     }
+
+    public void selectPayment (boolean option) {
+        scrollTo(paymentMethodBaloto);
+        waitGeneral(terms);
+        try {
+            click(terms);
+        } catch (Exception e) {
+            LOGGER.info(e.getMessage());
+            waitGeneral(terms);
+            click(terms);
+        }
+
+        if (option == true) {
+            waitGeneral(paymentMethodBaloto);
+            try {
+                click(paymentMethodBaloto);
+            } catch (Exception e) {
+                LOGGER.info(e.getMessage());
+                waitGeneral(paymentMethodBaloto);
+                click(paymentMethodBaloto);
+            }
+            scrollUp();
+        }
+
+        waitGeneral(paymentMethodBaloto);
+        try {
+            click(SELECT_END_BUY);
+        } catch (Exception exceptione) {
+            LOGGER.info(exceptione.getMessage());
+            waitGeneral(paymentMethodBaloto);
+            scrollUp();
+            scrollDown();
+            click(SELECT_END_BUY);
+        }
+
+        LOGGER.info("MELO CARAMELO");
+
+    }
+
+    public String isPresentMessage () {
+        waitGeneral(mensajePedidoRecibido);
+        return getText(mensajePedidoRecibido).trim();
+    }
+
+    public boolean isPresentImg () {
+        try {
+            waitGeneral(codigoQr);
+            return getStatusElement(codigoQr);
+        } catch (Exception exception) {
+            return false;
+        }
+    }
+
+    private void selectTwoProduct () {
+        scrollDown();
+        click(SELECT_PICTURE_ADD_CAR);
+        scrollDown();
+        click(SELECT_PICTURE_ADD_CAR);
+        click(SELECT_PICTURE_SEE_CAR);
+    }
+
 
 }

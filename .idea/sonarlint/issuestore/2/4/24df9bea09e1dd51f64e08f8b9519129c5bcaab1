@@ -1,7 +1,3 @@
 
-Y	java:S125œ"<This block of commented-out lines of code should be removed.(þÅ¹à8â…ôÊß/
-W	java:S125¢"<This block of commented-out lines of code should be removed.(¡³¡•þÿÿÿÿ
-V
-java:S1068_"4Remove this unused "TERMS_CONDITIONS" private field.(™Í ÷øÿÿÿÿ8ã…ôÊß/
-M
-java:S1068`"2Remove this unused "SELECT_END_BUY" private field.(úö‰Çøÿÿÿÿ
+>
+java:S1125É"'Remove the unnecessary boolean literal.(‹®¿­

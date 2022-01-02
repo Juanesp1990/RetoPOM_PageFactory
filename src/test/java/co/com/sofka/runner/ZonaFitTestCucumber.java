@@ -1,6 +1,5 @@
 package co.com.sofka.runner;
 
-import co.com.sofka.setup.WebUI;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;

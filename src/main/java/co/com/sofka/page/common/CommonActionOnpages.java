@@ -49,7 +49,7 @@ public class CommonActionOnpages extends BaseSikulix {
     }
 
     protected void click (By locator) {
-        driver.findElement(locator).click();
+        typeWait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
 
     protected void pathFile (By locator, String path) {
@@ -57,7 +57,15 @@ public class CommonActionOnpages extends BaseSikulix {
     }
 
     protected void pressEnter (By locator) {
-        driver.findElement(locator).sendKeys(Keys.ENTER);
+        typeWait.until(ExpectedConditions.elementToBeClickable(locator)).sendKeys(Keys.ENTER);
+    }
+
+    protected void pressTab (By locator) {
+        typeWait.until(ExpectedConditions.elementToBeClickable(locator)).sendKeys(Keys.TAB);
+    }
+
+    protected void arrowDowm (By locator) {
+        typeWait.until(ExpectedConditions.elementToBeClickable(locator)).sendKeys(Keys.ARROW_DOWN);
     }
 
     public void scrollTo (By locator) {
@@ -72,7 +80,7 @@ public class CommonActionOnpages extends BaseSikulix {
     /* functions for web element*/
 
     protected void clearText (WebElement webElement) {
-        webElement.clear();
+        typeWait.until(elementToBeClickable(webElement)).clear();
     }
 
     protected void typeInto (WebElement webElement, String value) {
@@ -80,12 +88,8 @@ public class CommonActionOnpages extends BaseSikulix {
     }
 
     protected void click (WebElement webElement) {
-        webElement.click();
-
-    }
-
-    protected void waitClick (WebElement webElement) {
         typeWait.until(elementToBeClickable(webElement)).click();
+
     }
 
     protected void pathFile (WebElement webElement, String path) {
@@ -93,7 +97,7 @@ public class CommonActionOnpages extends BaseSikulix {
     }
 
     protected void pressEnter (WebElement webElement) {
-        webElement.sendKeys(Keys.ENTER);
+        typeWait.until(ExpectedConditions.elementToBeClickable(webElement)).sendKeys(Keys.ENTER);
     }
 
     public void scrollTo (WebElement webElement) {
@@ -102,8 +106,13 @@ public class CommonActionOnpages extends BaseSikulix {
     }
 
     protected String getText (WebElement webElement) {
-        return webElement.getText();
+        return  webElement.getText();
     }
+
+    protected boolean getStatusElement (WebElement webElement) {
+        return webElement.isDisplayed();
+    }
+
 
 }
 
