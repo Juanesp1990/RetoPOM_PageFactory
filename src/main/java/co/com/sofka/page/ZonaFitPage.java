@@ -241,8 +241,9 @@ public class ZonaFitPage extends CommonActionOnpages {
 
     private void selectTwoProduct () {
         scrollDown();
-        click(SELECT_PICTURE_ADD_CAR);
         scrollDown();
+        click(SELECT_PICTURE_ADD_CAR);
+
         click(SELECT_PICTURE_ADD_CAR);
         click(SELECT_PICTURE_SEE_CAR);
     }
